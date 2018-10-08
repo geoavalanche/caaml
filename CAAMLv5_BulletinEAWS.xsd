@@ -457,59 +457,64 @@
 			<sequence maxOccurs="unbounded">
 				<element name="Region"/>
 			</sequence>
+			<attributeGroup ref="gml:AssociationAttributeGroup" />
 		</complexType>
 	</element>
-	<element name="Region" type="caaml:RegionType"/>
+	<element name="Region" substitutionGroup="gml:AbstractFeature" type="caaml:RegionType"/>
 	<complexType name="RegionType" final="#all">
-		<sequence>
-			<element name="metaDataProperty" minOccurs="0">
-				<annotation>
-					<documentation>Property element for location meta data</documentation>
-				</annotation>
-				<complexType>
-					<sequence>
-						<element name="MetaData" type="caaml:LocMetaDataType"/>
-					</sequence>
-				</complexType>
-			</element>
-			<element name="description" type="string" minOccurs="0">
-				<annotation>
-					<documentation>Property element for description of location</documentation>
-				</annotation>
-			</element>
-			<element name="name" type="string">
-				<annotation>
-					<documentation>Property element for name of location</documentation>
-				</annotation>
-			</element>
-			<element name="regionSubType" type="string">
-				<annotation>
-					<documentation>Required property element for specifying sub type of region (forecast area, drainage,..)</documentation>
-				</annotation>
-			</element>
-			<element name="centerPoint" type="gml:GeometryPropertyType" minOccurs="0">
-				<annotation>
-					<documentation>Property element for coordinates of center point</documentation>
-				</annotation>
-				<!-- <complexType>
-					<sequence>
-						<element ref="gml:Point"/>
-					</sequence>
-					</complexType> -->
-			</element>
-			<element name="outline" type="gml:GeometryPropertyType" minOccurs="0">
-				<annotation>
-					<documentation>Property element for coordinates of region outline</documentation>
-				</annotation>
-				<!-- <complexType>
-					<sequence>
-						<element ref="gml:Polygon"/>
-					</sequence>
-					</complexType> -->
-			</element>
-		</sequence>
-		<attribute ref="gml:id" use="required"/>
-		<attribute ref="xml:lang" use="optional"/>
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="metaDataProperty" minOccurs="0">
+						<annotation>
+							<documentation>Property element for location meta data</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element name="MetaData" type="caaml:LocMetaDataType"/>
+							</sequence>
+						</complexType>
+					</element>
+					<element name="description" type="string" minOccurs="0">
+						<annotation>
+							<documentation>Property element for description of location</documentation>
+						</annotation>
+					</element>
+					<element name="name" type="string">
+						<annotation>
+							<documentation>Property element for name of location</documentation>
+						</annotation>
+					</element>
+					<element name="regionSubType" type="string">
+						<annotation>
+							<documentation>Required property element for specifying sub type of region (forecast area, drainage,..)</documentation>
+						</annotation>
+					</element>
+					<element name="centerPoint" type="gml:GeometryPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Property element for coordinates of center point</documentation>
+						</annotation>
+						<!-- <complexType>
+							<sequence>
+								<element ref="gml:Point"/>
+							</sequence>
+							</complexType> -->
+					</element>
+					<element name="outline" type="gml:GeometryPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>Property element for coordinates of region outline</documentation>
+						</annotation>
+						<!-- <complexType>
+							<sequence>
+								<element ref="gml:Polygon"/>
+							</sequence>
+							</complexType> -->
+					</element>
+				</sequence>
+				<!-- <attribute ref="gml:id" use="required"/>
+					<attribute ref="xml:lang" use="optional"/> -->
+			</extension>
+		</complexContent>
 	</complexType>
 	<!--***-->
 	<element name="AspectCollection" type="caaml:AspectCollectionType"/>
