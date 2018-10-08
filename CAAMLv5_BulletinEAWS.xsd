@@ -487,25 +487,25 @@
 					<documentation>Required property element for specifying sub type of region (forecast area, drainage,..)</documentation>
 				</annotation>
 			</element>
-			<element name="centerPoint" minOccurs="0">
+			<element name="centerPoint" type="gml:GeometryPropertyType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for coordinates of center point</documentation>
 				</annotation>
-				<complexType>
+				<!-- <complexType>
 					<sequence>
 						<element ref="gml:Point"/>
 					</sequence>
-				</complexType>
+					</complexType> -->
 			</element>
-			<element name="outline" minOccurs="0">
+			<element name="outline" type="gml:GeometryPropertyType" minOccurs="0">
 				<annotation>
 					<documentation>Property element for coordinates of region outline</documentation>
 				</annotation>
-				<complexType>
+				<!-- <complexType>
 					<sequence>
 						<element ref="gml:Polygon"/>
 					</sequence>
-				</complexType>
+					</complexType> -->
 			</element>
 		</sequence>
 		<attribute ref="gml:id" use="required"/>
