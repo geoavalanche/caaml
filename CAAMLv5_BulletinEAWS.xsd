@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by Pascal Haegeli (Avisualanche Consulting) -->
-<schema xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
-	<import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS/CAAMLv5_BulletinEAWS_GML.xsd"/>
+<schema xmlns:caaml="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS" elementFormDefault="qualified" attributeFormDefault="unqualified" version="5.0.1">
+	<!-- <import namespace="http://www.opengis.net/gml" schemaLocation="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS/CAAMLv5_BulletinEAWS_GML.xsd"/> -->
 	<import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS/xlinks.xsd"/>
 	<import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://caaml.org/Schemas/V5.0/Profiles/BulletinEAWS/xml.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd" />
 	<!--*******************************-->
 	<!--***        WRAPPER         ***-->
 	<!--*******************************-->
@@ -109,28 +110,32 @@
 		</complexType>
 	</element>
 	<!--***-->
-	<element name="Bulletin" type="caaml:BulletinType"/>
+	<element name="Bulletin" type="caaml:BulletinType" substitutionGroup="gml:AbstractFeature" />
 	<complexType name="BulletinType" final="#all">
-		<sequence>
-			<element name="metaDataProperty">
-				<complexType>
-					<sequence>
-						<element name="MetaData" type="caaml:ObsMetaDataType"/>
-					</sequence>
-				</complexType>
-			</element>
-			<element ref="caaml:validTime"/>
-			<element name="bulletinResultsOf">
-				<complexType>
-					<sequence>
-						<element ref="caaml:BulletinMeasurements"/>
-					</sequence>
-				</complexType>
-			</element>
-			<element ref="caaml:locRef"/>
-		</sequence>
-		<attribute ref="gml:id" use="required"/>
-		<attribute ref="xml:lang" use="optional"/>
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+			<sequence>
+				<element name="metaDataProperty">
+					<complexType>
+						<sequence>
+							<element name="MetaData" type="caaml:ObsMetaDataType"/>
+						</sequence>
+					</complexType>
+				</element>
+				<element ref="caaml:validTime"/>
+				<element name="bulletinResultsOf">
+					<complexType>
+						<sequence>
+							<element ref="caaml:BulletinMeasurements"/>
+						</sequence>
+					</complexType>
+				</element>
+				<element ref="caaml:locRef"/>
+			</sequence>
+			<!-- <attribute ref="gml:id" use="required"/>
+				<attribute ref="xml:lang" use="optional"/> -->
+			</extension>
+		</complexContent>
 	</complexType>
 	<!--***-->
 	<element name="BulletinMeasurements" type="caaml:BulletinMeasurementsType"/>
